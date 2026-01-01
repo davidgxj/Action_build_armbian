@@ -60,7 +60,7 @@ concurrency:
 jobs:
   build:
     name: "Build Armbian"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: write
       packages: write
@@ -68,7 +68,7 @@ jobs:
     steps:
       - name: Clone Armbian build repository
         run: |
-          sudo -E apt-get -y install $(curl -fsSL https://ophub.org/ubuntu2404-build-armbian-depends)
+          # sudo -E apt-get -y install $(curl -fsSL https://ophub.org/ubuntu2404-build-armbian-depends)
           git clone https://github.com/armbian/build.git -b ${{ github.event.inputs.REPO_BRANCH }} armbian-build
           cd armbian-build
       - name: Set desktop environment variables
@@ -82,7 +82,7 @@ jobs:
       - name: Compile
         working-directory: ./armbian-build
         run: |
-          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 2>/dev/null || true
+          # docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 2>/dev/null || true
           ./compile.sh \
             BOARD=${{ github.event.inputs.BOARD }} \
             BRANCH=${{ env.RELEASE_BRANCH }} \
