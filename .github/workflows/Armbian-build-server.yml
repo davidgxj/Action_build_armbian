@@ -68,6 +68,7 @@ jobs:
     steps:
       - name: Clone Armbian build repository
         run: |
+          sudo -E apt-get -y install $(curl -fsSL https://ophub.org/ubuntu2404-build-armbian-depends)
           git clone https://github.com/armbian/build.git -b ${{ github.event.inputs.REPO_BRANCH }} armbian-build
           cd armbian-build
       - name: Set desktop environment variables
