@@ -10,7 +10,7 @@ on:
       RELEASE:
         description: 'Release name'
         required: true
-        default: 'plucky'
+        default: 'bookworm'
         type: choice
         options:
           - 'bookworm'
@@ -26,7 +26,7 @@ on:
       BUILD_MINIMAL:
         description: 'Build minimal image'
         required: true
-        default: 'no'
+        default: 'yes'
         type: choice
         options:
           - 'yes'
@@ -60,7 +60,7 @@ concurrency:
 jobs:
   build:
     name: "Build Armbian"
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       packages: write
