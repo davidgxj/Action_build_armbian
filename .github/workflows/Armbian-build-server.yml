@@ -60,7 +60,7 @@ concurrency:
 jobs:
   build:
     name: "Build Armbian"
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       packages: write
@@ -81,8 +81,8 @@ jobs:
       - name: Compile
         working-directory: ./armbian-build
         run: |
-            # docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 2>/dev/null || true
-            ./compile.sh \
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 2>/dev/null || true
+          ./compile.sh \
             BOARD=${{ github.event.inputs.BOARD }} \
             BRANCH=${{ env.RELEASE_BRANCH }} \
             RELEASE=${{ github.event.inputs.RELEASE }} \
